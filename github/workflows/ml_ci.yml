@@ -1,0 +1,52 @@
+name: CI/CD para ML con MLflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ml_pipeline:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Permite hacer git push
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 📦 Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🧪 Ejecutar flujo completo (EDA, limpieza, entrenamiento, validación)
+        run: make full
+
+      - name: 📤 Subir modelo .pkl como artefacto
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mejor_modelo
+          path: models/mejor_modelo.pkl
+
+      # --- Subir cambios en mlruns al repositorio ---
+      - name: ⚙️ Configurar Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: ✨ Añadir cambios en mlruns
+        run: git add mlruns
+
+      - name: 📝 Confirmar cambios en mlruns (si existen)
+        run: |
+          git diff --staged --quiet || git commit -m "Actualizar mlruns con resultados de ejecución [skip ci]"
+
+      - name: 🚀 Empujar cambios a main
+        run: git push origin main

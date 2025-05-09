@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Ciencia de Datos EAN/3er Semestre I-2025/3 MLOPS y Analitica
+  en la Nube/Ej_Pasajeros/mlruns/242041347881242423/b1618562b7f04895a7c3634e046a69b3/artifacts
+end_time: 1746827565261
+entry_point_name: ''
+experiment_id: '242041347881242423'
+lifecycle_stage: active
+run_id: b1618562b7f04895a7c3634e046a69b3
+run_name: Limpieza y división de datos
+run_uuid: b1618562b7f04895a7c3634e046a69b3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746827564471
+status: 3
+tags: []
+user_id: usuario

@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Ciencia de Datos EAN/3er Semestre I-2025/3 MLOPS y Analitica
+  en la Nube/Ej_Pasajeros/mlruns/278494606934579096/082f0dc1016b4cf491301a38e240baab/artifacts
+end_time: 1746827970240
+entry_point_name: ''
+experiment_id: '278494606934579096'
+lifecycle_stage: active
+run_id: 082f0dc1016b4cf491301a38e240baab
+run_name: EDA básica
+run_uuid: 082f0dc1016b4cf491301a38e240baab
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746827964479
+status: 3
+tags: []
+user_id: usuario
