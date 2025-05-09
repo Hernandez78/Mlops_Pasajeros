@@ -3,6 +3,7 @@ name: CI/CD para ML con MLflow
 on:
   push:
     branches: [main]
+  workflow_dispatch: # permite ejecucion manual desde github  
 
 jobs:
   ml_pipeline:
