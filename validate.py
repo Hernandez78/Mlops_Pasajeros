@@ -8,18 +8,17 @@ from sklearn.metrics import accuracy_score, f1_score, classification_report, con
 # ================================
 # ✅ Rutas controladas y absolutas
 # ================================
-cwd = os.getcwd()
-mlruns_dir = os.path.join(cwd, "mlruns")
-artifact_location = f"file://{mlruns_dir}"
-tracking_uri = artifact_location
-os.makedirs(mlruns_dir, exist_ok=True)
+mlflow.set_tracking_uri("file://./mlruns")
+os.makedirs("mlruns", exist_ok=True)
 os.makedirs("outputs", exist_ok=True)
+
+mlflow.set_experiment("evaluacion_final_test")
 
 # ================================
 # ✅ Configurar MLflow
 # ================================
-mlflow.set_tracking_uri(tracking_uri)
-mlflow.set_experiment("Evaluación Final - Test Set")
+#mlflow.set_tracking_uri(tracking_uri)
+#mlflow.set_experiment("Evaluación Final - Test Set")
 
 # ================================
 # Cargar modelo y datos
