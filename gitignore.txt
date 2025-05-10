@@ -1,0 +1,9 @@
+# Ignorar artefactos intermedios de datos
+artifacts/
+*.pkl
+
+# Ignorar archivos temporales
+__pycache__/
+*.ipynb_checkpoints
+
+# 🚫 NO ignorar la carpeta outputs (porque queremos las gráficas)
