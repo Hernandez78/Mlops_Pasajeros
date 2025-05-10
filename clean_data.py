@@ -17,7 +17,7 @@ os.makedirs(artifacts_dir, exist_ok=True)
 # ============================
 # Configurar MLflow
 # ============================
-mlflow.set_tracking_uri("file:./mlruns")
+mlflow.set_tracking_uri("file://./mlruns")
 mlflow.set_experiment("Preprocesamiento - Clean Data")
 
 with mlflow.start_run(run_name="Limpieza y división de datos"):
@@ -32,14 +32,12 @@ with mlflow.start_run(run_name="Limpieza y división de datos"):
     # ============================
     df_train.drop(['Unnamed: 0', 'id'], axis=1, inplace=True)
     df_test.drop(['Unnamed: 0', 'id'], axis=1, inplace=True)
-
     median_delay = df_train['Arrival Delay in Minutes'].median()
     df_train = df_train.copy()  # ✅ Garantizar que estamos modificando una versión real y no una vista
     df_test = df_test.copy()
-
     df_train['Arrival Delay in Minutes'] = df_train['Arrival Delay in Minutes'].fillna(median_delay)
     df_test['Arrival Delay in Minutes'] = df_test['Arrival Delay in Minutes'].fillna(median_delay)
-    
+
     df_train['satisfaction'] = df_train['satisfaction'].map({'satisfied': 1, 'neutral or dissatisfied': 0})
     df_test['satisfaction'] = df_test['satisfaction'].map({'satisfied': 1, 'neutral or dissatisfied': 0})
 
@@ -77,7 +75,6 @@ with mlflow.start_run(run_name="Limpieza y división de datos"):
     joblib.dump((X_train, y_train), path_train)
     joblib.dump((X_val, y_val), path_val)
     joblib.dump((X_test, y_test), path_test)
-
     print("✅ Datos limpios y guardados en artifacts/*.pkl")
 
     # ============================

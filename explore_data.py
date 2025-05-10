@@ -13,7 +13,7 @@ os.makedirs(outputs_dir, exist_ok=True)
 # ================================
 # Configurar MLflow para EDA
 # ================================
-mlflow.set_tracking_uri("file:./mlruns")
+mlflow.set_tracking_uri("file://./mlruns")
 mlflow.set_experiment("EDA - Exploración de Datos")
 
 with mlflow.start_run(run_name="EDA básica"):
@@ -26,10 +26,10 @@ with mlflow.start_run(run_name="EDA básica"):
     # Estructura
     print("Train shape:", df_train.shape)
     print("Test shape:", df_test.shape)
-    print("\\nColumnas:", df_train.columns.tolist())
+    print("\nColumnas:", df_train.columns.tolist())
 
     # Valores nulos
-    print("\\nValores nulos por columna (train):\\n", df_train.isnull().sum())
+    print("\nValores nulos por columna (train):\n", df_train.isnull().sum())
 
     # ================================
     # Distribución de la variable objetivo
@@ -74,7 +74,6 @@ with mlflow.start_run(run_name="EDA básica"):
     # Correlación entre variables numéricas
     # ================================
     numerical = df_train.select_dtypes(include='number')
-
     plt.figure(figsize=(12, 10))
     sns.heatmap(numerical.corr(), annot=True, cmap='coolwarm', fmt=".2f")
     plt.title("Matriz de correlación")
@@ -93,6 +92,6 @@ with mlflow.start_run(run_name="EDA básica"):
     # ================================
     # Valores únicos en columnas clave
     # ================================
-    print("\\nValores únicos en 'satisfaction':", df_train['satisfaction'].unique())
+    print("\nValores únicos en 'satisfaction':", df_train['satisfaction'].unique())
     for col in categorical_columns:
         print(f"Columna '{col}' - valores únicos:", df_train[col].unique())
