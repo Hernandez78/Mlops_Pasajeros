@@ -20,15 +20,14 @@ os.makedirs(mlruns_dir, exist_ok=True)
 # ===============================
 # ✅ Configurar MLflow
 # ===============================
-mlflow.set_tracking_uri(tracking_uri)
+mlflow.set_tracking_uri("file://./mlruns")
+os.makedirs("mlruns", exist_ok=True)
+
 experiment_name = "airline_satisfaction"
 
 # Intentar crear experimento limpio
 try:
-    experiment_id = mlflow.create_experiment(
-        name=experiment_name,
-        artifact_location=artifact_location
-    )
+    experiment_id = mlflow.create_experiment(experiment_name)
     print(f"✅ Experimento '{experiment_name}' creado.")
 except MlflowException:
     experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
