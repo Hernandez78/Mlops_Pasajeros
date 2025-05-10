@@ -23,10 +23,10 @@ mlflow.set_experiment("evaluacion_final_test")
 # ================================
 # Cargar modelo y datos
 # ================================
-modelo_path = os.path.abspath("models/mejor_modelo.pkl")
+modelo_path = "./models/mejor_modelo.pkl"
 modelo = joblib.load(modelo_path)
 
-X_test, y_test = joblib.load(os.path.abspath("artifacts/test.pkl"))
+X_test, y_test = joblib.load("./artifacts/test.pkl")
 
 # ================================
 # Evaluación y registro

@@ -9,16 +9,7 @@ from sklearn.metrics import accuracy_score, f1_score, classification_report
 from mlflow.exceptions import MlflowException
 
 # ===============================
-# ✅ Rutas absolutas controladas
-# ===============================
-cwd = os.getcwd()
-mlruns_dir = os.path.join(cwd, "mlruns")
-artifact_location = f"file://{mlruns_dir}"
-tracking_uri = artifact_location
-os.makedirs(mlruns_dir, exist_ok=True)
-
-# ===============================
-# ✅ Configurar MLflow
+# ✅ Configurar MLflow con rutas relativas
 # ===============================
 mlflow.set_tracking_uri("file://./mlruns")
 os.makedirs("mlruns", exist_ok=True)
